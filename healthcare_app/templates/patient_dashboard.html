@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AEGISCARE - Patient Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  
+</head>
+<body>
+
+  <div class="sidebar">
+    <h3>AEGISCARE</h3>
+    <a href="#">Home</a>
+    <a href="{{ url_for('chatbot_page') }}">Chatbot</a>
+    <a href="{{ url_for('book_appointment') }}">Book an Appointment</a>
+    <a href="#">Profile</a>
+    <a href="{{ url_for('epharmacy') }}">🛒 E-Pharmacy</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <div class="main-content">
+    <div class="lang-switcher">
+      <label for="lang">🌐 Language: </label>
+      <select id="lang" onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="ta">Tamil</option>
+        <option value="hi">Hindi</option>
+      </select>
+    </div>
+
+    <div id="homeSection">
+      <h2 id="title">Welcome to AEGISCARE – Your Digital Health Guardian!</h2>
+      <p id="desc">
+        AEGISCARE helps you access first aid instantly, connect with nearby specialists, order prescription medicines, and manage your health records securely.
+      </p>
+    </div>
+
+   
+   <script>
+    function changeLanguage(lang) {
+      const langs = {
+        en: {
+          title: "Welcome to AEGISCARE – Your Digital Health Guardian!",
+          desc: "AEGISCARE helps you access first aid instantly, connect with nearby specialists, order prescription medicines, and manage your health records securely.",
+        },
+        ta: {
+          title: "AEGISCARE-க்கு வரவேற்கிறோம் – உங்கள் டிஜிட்டல் சுகாதார பாதுகாவலர்!",
+          desc: "AEGISCARE மூலம் முதல் உதவி, நெருக்கமான நிபுணர்கள், மருந்து ஆர்டர் மற்றும் மருத்துவ பதிவுகளை எளிதாக நிர்வகிக்கலாம்.",
+        },
+        hi: {
+          title: "AEGISCARE में आपका स्वागत है – आपका डिजिटल स्वास्थ्य गार्डियन!",
+          desc: "AEGISCARE आपको प्राथमिक उपचार, नजदीकी विशेषज्ञों से संपर्क, दवाओं की खरीद और हेल्थ रिकॉर्ड मैनेजमेंट में मदद करता है।",
+        },
+      };
+
+      document.getElementById("title").innerText = langs[lang].title;
+      document.getElementById("desc").innerText = langs[lang].desc;
+    }
+  </script>
+
+</body>
+</html>
