@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}CHATBOT{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AEGIS Bot</title>
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('user_input').value;
+      if (!input.trim()) return;
+
+      fetch('/chatbot_api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'user_input=' + encodeURIComponent(input)
+      })
+      .then(response => response.json())
+      .then(data => {
+        const chatBox = document.getElementById('chatbox');
+        chatBox.value += "You: " + input + "\nBot: " + data.reply + "\n\n";
+        document.getElementById('user_input').value = '';
+      });
+    }
+  </script>
+</head>
+<body>
+  <h2>🤖 AEGIS Bot – First Aid & Specialist Assistant</h2>
+
+
+  <textarea id="chatbox" rows="15" cols="100" readonly></textarea><br>
+  <input type="text" id="user_input" placeholder="Describe your problem...">
+  <button onclick="sendMessage()">Send</button>
+</body>
+</html>
+{% endblock %}

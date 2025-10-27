@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}My App{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h2 data-key="aegiscare">AEGISCARE</h2>
+    <nav>
+      <a href="{% if current_user.role == 'doctor' %}
+                  {{ url_for('doctor_dashboard') }}
+               {% elif current_user.role == 'patient' %}
+                  {{ url_for('patient_dashboard') }}
+               {% else %}
+                  {{ url_for('login') }}
+               {% endif %}" 
+        data-key="home">Home</a>
+
+      <a href="/logout" data-key="logout">Logout</a>
+      <select onchange="setLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="ta">தமிழ்</option>
+        <option value="hin">हिन्दी</option>
+      </select>
+    </nav>
+  </header>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer>© 2025 AegisCare. All rights reserved.</footer>
+
+  <!-- ✅ Only ONE script tag at the end -->
+  <script src="{{ url_for('static', filename='lang.js') }}"></script>
+</body>
+</html>

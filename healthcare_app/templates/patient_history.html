@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Patient History{% endblock %}
+{% block content %}
+<h2>📁 Patient History</h2>
+
+
+{% if patients %}
+  <ul>
+    {% for patient in patients %}
+      <li>
+        <strong>{{ patient.name }}</strong> - 
+        <a href="{{ url_for('view_patient_history', patient_id=patient.id) }}">View History</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No patients found.</p>
+{% endif %}
+{% endblock %}

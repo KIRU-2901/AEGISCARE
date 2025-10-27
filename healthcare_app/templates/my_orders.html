@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}MYORDERS{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AEGISCARE - My Orders</title>
+</head>
+<body>
+  <h2>📦 My Medicine Orders</h2>
+
+
+  {% if orders %}
+    <table border="1" cellpadding="10" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Medicine</th>
+          <th>Dosage</th>
+          <th>Price (₹)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.prescription.medicine }}</td>
+            <td>{{ order.prescription.dosage }}</td>
+            <td>
+                {% if order.final_price is not none %}
+                    ₹{{ '%.2f'|format(order.final_price) }}
+                {% else %}
+                    N/A (Pending Price Fix)
+                {% endif %}
+            </td>
+            <td><strong>{{ order.status }}</strong></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>You have not placed any E-Pharmacy orders yet.</p>
+    <p>Go to <a href="{{ url_for('epharmacy') }}">E-Pharmacy</a> to place your first order!</p>
+  {% endif %}
+
+  <br>
+  <a href="{{ url_for('patient_dashboard') }}">🏠 Back to Dashboard</a>
+</body>
+</html>
+{% endblock %}

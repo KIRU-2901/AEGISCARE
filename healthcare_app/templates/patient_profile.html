@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Patient Profile{% endblock %}
+{% block content %}
+<div class="profile-container">
+  <h2 data-key="profile">👤 My Profile</h2>
+
+  <div class="profile-card">
+    <p><strong>Name:</strong> {{ current_user.name }}</p>
+    <p><strong>Date of Birth:</strong> {{ current_user.dob }}</p>
+    <p><strong>Height:</strong> {{ current_user.height }} cm</p>
+    <p><strong>Weight:</strong> {{ current_user.weight }} kg</p>
+    <p><strong>BMI:</strong> {{ current_user.bmi }}</p>
+    <p><strong>Address:</strong> {{ current_user.address }}</p>
+    <p><strong>Contact:</strong> {{ current_user.contact }}</p>
+  </div>
+
+  <a href="{{ url_for('edit_profile') }}" class="edit-btn" data-key="editProfile">✏️ Edit Profile</a>
+</div>
+{% endblock %}

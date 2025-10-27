@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Patient Dashboard{% endblock %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='patient.css') }}">
+{% endblock %}
+{% block content %}
+<div class="sidebar">
+  <a href="{{ url_for('patient_dashboard') }}" data-key="home">Home</a>
+  <a href="{{ url_for('chatbot_page') }}" data-key="chatbot">Chatbot</a>
+  <a href="{{ url_for('book_appointment') }}" data-key="book_appointment">Book Appointment</a>
+  <a href="{{ url_for('patient_profile') }}" data-key="profile">Profile</a>
+  <a href="{{ url_for('epharmacy') }}" data-key="epharmacy">🛒 E-Pharmacy</a>
+  <a href="{{ url_for('my_orders') }}" data-key="my_orders">📦 My Orders</a>
+  <a href="{{ url_for('logout') }}" data-key="logout">Logout</a>
+</div>
+
+<div class="main-content">
+  <h2 data-key="welcome">Welcome to AEGISCARE!</h2>
+  <p data-key="patient_dashboard_desc">Manage your health, appointments, and medicines — all in one place.</p>
+
+  <hr><br>
+
+  <h3>🗣️ Share your feedback</h3>
+  <form action="{{ url_for('submit_feedback') }}" method="POST" class="feedback-form">
+    <textarea name="message" placeholder="Write your feedback..." required></textarea><br>
+    <button type="submit">Submit Feedback</button>
+  </form>
+</div>
+{% endblock %}

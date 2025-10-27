@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}View{% endblock %}
+{% block content %}
+<h2>📄 History for {{ patient.name }}</h2>
+
+
+{% if prescriptions %}
+  <ul>
+    {% for p in prescriptions %}
+      <li>
+        <strong>Date:</strong> {{ p.date }}<br>
+        <strong>Medicine:</strong> {{ p.medicine }}<br>
+        <strong>Dosage:</strong> {{ p.dosage }}<br>
+        <strong>Instructions:</strong> {{ p.instructions }}<br><br>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No prescriptions found for this patient.</p>
+{% endif %}
+
+<a href="{{ url_for('patient_history') }}">🔙 Back to All Patients</a>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Price Comparison{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price Comparison</title>
+</head>
+<body>
+    <h2>💰 Compare Prices for: {{ medicine_name }}</h2>
+    <h3 data-key="loginPage">Login Page</h3>
+
+    <p>Select the cheapest vendor to confirm your order and get the direct purchase link.</p>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Vendor</th>
+            <th>Price (₹)</th>
+            <th>Action</th>
+        </tr>
+        {% for name, data in vendors.items() %}
+        <tr>
+            <td>
+                <strong>{{ name }}</strong>
+                {% if name == cheapest[0] %}
+                    (CHEAPEST!) 🏆
+                {% endif %}
+            </td>
+            <td>₹{{ data.price }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('epharmacy') }}">
+                    <input type="hidden" name="prescription_id" value="{{ pres_id }}">
+                    <input type="hidden" name="vendor" value="{{ name }}">
+                    <input type="hidden" name="final_price" value="{{ data.price }}">
+                    <button type="submit">Order from {{ name }}</button>
+                    <a href="{{ data.link }}" target="_blank">Go to Site 🔗</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{{ url_for('epharmacy') }}">🔙 Back to E-Pharmacy</a>
+</body>
+</html>
+{% endblock %}

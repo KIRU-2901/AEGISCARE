@@ -1,0 +1,45 @@
+/* ---------- PATIENT DASHBOARD ---------- */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 70px;
+  height: calc(100vh - 70px);
+  width: 220px;
+  background: var(--primary);
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+}
+
+.sidebar a {
+  color: white;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background: var(--accent);
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 40px;
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+.main-content p {
+  color: var(--text-light);
+  line-height: 1.6;
+  max-width: 600px;
+}

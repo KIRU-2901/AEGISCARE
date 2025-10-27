@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}EDIT PROFILE{% endblock %}
+{% block content %}
+<h2>Edit Profile</h2>
+<h3 data-key="loginPage">Login Page</h3>
+
+<form method="post">
+  <label>Hospital:</label><input type="text" name="hospital" value="{{ current_user.hospital }}"><br>
+  <label>Experience:</label><input type="number" name="experience" value="{{ current_user.experience }}"><br>
+  <label>Location:</label><input type="text" name="location" value="{{ current_user.location }}"><br>
+  <button type="submit">Update</button>
+</form>
+{% endblock %}

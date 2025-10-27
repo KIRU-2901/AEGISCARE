@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+{% endblock %}
+{% block content %}
+<div class="admin-container">
+  <h2>👩‍💼 Admin Dashboard</h2>
+  <p>Welcome, Admin! Here’s what’s happening in AEGISCARE.</p>
+
+  <hr>
+  <h3>📢 Patient Feedbacks</h3>
+  <div class="feedback-list">
+    {% for fb in feedbacks %}
+      <div class="feedback-card">
+        <p><strong>Patient Name:</strong> {{ fb.patient.name}}</p>
+        <p>{{ fb.message }}</p>
+        <small>🕒 {{ fb.created_at.strftime('%d %b %Y, %I:%M %p') }}</small>
+      </div>
+    {% else %}
+      <p>No feedback available yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
